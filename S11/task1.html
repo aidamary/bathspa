@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <script src="task1.js"></script>
+    <title>Task 1</title>
+</head>
+<body>
+    <form class="mb-3" onsubmit="calculate(event)">
+        <label class="form-label" for="value1">value1</label><br>
+        <input class="form-control" type="number" id="value1" name="value1"><br>
+        <label class="form-label" for="value2">value2</label><br>
+        <input class="form-control" type="number" id="value2" name="value2"><br>
+        <p>Select your calculation:</p>
+  <input type="radio" id="add" name="calculation" value="add">
+  <label for="add">Add</label><br>
+  <input type="radio" id="subtract" name="calculation" value="subtract">
+  <label for="subtract">Subtract</label><br>
+  <input type="radio" id="multiply" name="calculation" value="multiply">
+  <label for="multiply">Multiply</label>
+<br>
+        <button type="submit" class="btn btn-primary">Calculate</button>
+    </form>
+    <div id="results"></div>
+</body>
+</html>
