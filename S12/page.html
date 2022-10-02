@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="page.css">
+    <script src="page.js"></script>
     <title>Document</title>
 </head>
 <body>
@@ -13,10 +14,10 @@
             <div class="logo">
                 <img src="./logo.png" alt="logo">
                 <div class="navbar">
-                    <div class="links">Home</div>
-                    <div class="links">About</div>
-                    <div class="links">Collections</div>
-                    <div class="links">Category</div>
+                    <div class="links" onclick="changeColor(event)">Home</div>
+                    <div class="links" onclick="changeColor(event)">About</div>
+                    <div class="links" onclick="changeColor(event)">Collections</div>
+                    <div class="links" onclick="changeColor(event)">Category</div>
                 </div>
             </div>
             <div class="cart">
@@ -24,13 +25,13 @@
             </div>
         </div>
         <div class="sidebar">
-            <div class="logo"><img src="./facebook.png" alt="facebook"></div>
-            <div class="logo"><img src="./instagram.png" alt="instagram"></div>
-            <div class="logo"><img src="./twitter.png" alt="twitter"></div>
-            <div class="logo"><img src="./linkedin.png" alt="linkedin"></div>
+            <div class="sm-logo"><a href="#"><img src="./facebook.png" alt="facebook"></a></div>
+            <div class="sm-logo"><a href="#"><img src="./instagram.png" alt="instagram"></a></div>
+            <div class="sm-logo"><a href="#"><img src="./twitter.png" alt="twitter"></a></div>
+            <div class="sm-logo"><a href="#"><img src="./linkedin.png" alt="linkedin"></a></div>
         </div>
         <div class="banner">
-            <div class="button">
+            <div class="button" onclick="collection()">
                 2022 Collection
             </div>
             <div class="title">
