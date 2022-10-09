@@ -1,0 +1,128 @@
+body {
+    background-color: #131518;
+    min-height: 100vh;
+    color: #fff;
+    font-size: 1.6rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-family: "Overpass", sans-serif;
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.rating, .submission {
+    max-width: 40rem;
+    min-height: 40rem;
+    border-radius: 3rem;
+    padding: 3rem;
+    margin: 0 2rem;
+    background: radial-gradient( 98.96% 98.96% at 50% 0%, #232a34 0%, #181e27 100% );
+}
+.rating__img {
+    padding: 1.5rem;
+    background-color: #262e38;
+    border-radius: 50%;
+    margin-bottom: 3rem;
+}
+.rating__title {
+    margin-bottom: 1.5rem;
+}
+.rating__description {
+    color: #969fad;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+.rating__form__fieldset {
+    border: none;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+}
+
+.rating__form__legend {
+    display: none;
+}
+
+.rating__form__label--radio {
+    background-color: #262e38;
+    width: 5rem;
+    height: 5rem;
+    display: inline-block;
+    text-align: center;
+    line-height: 5rem;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.rating__form__input--radio {
+    display: none;
+}
+
+.rating__form__input--submit {
+    width: 100%;
+    cursor: pointer;
+    padding: 1.5rem;
+    border-radius: 2rem;
+    border: none;
+    background-color: #fc7614;
+    color: #fff;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.2rem;
+}
+
+.rating__form__label--submit {
+    display: none;
+}
+
+.submission {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.rating__form__label--radio--selected {
+    background-color: #7c8798;
+}
+
+.rating__form__label--radio:active {
+    background-color: #fc7614;
+}
+
+.submission {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.submission__img {
+    margin-bottom: 3rem;
+}
+
+.submission__text--rating {
+    color: #fc7614;
+    background-color: #262e38;
+    padding: 1rem 2.5rem;
+    border-radius: 2rem;
+    margin-bottom: 4rem;
+}
+
+.submission__text--thanks {
+    font-size: 2.8rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+}
+
+.submission__text--message {
+    color: #969fad;
+    text-align: center;
+}
+
+.hide {
+    display: none;
+}
