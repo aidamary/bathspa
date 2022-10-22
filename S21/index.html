@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+
+  <title>Frontend Mentor | Interactive card details form</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500&display=swap" rel="stylesheet">
+<script src="index.js"></script>
+</head>
+
+<body>
+
+  <div class="wrap">
+
+    <div class="card-display">
+      <div class="card-display__cards">
+        <div class="card-display__card card-display__card--front">
+          <object class="card-logo" data="images/card-logo.svg" width="100" height="auto"> </object>
+          <div class="card-data">
+            <div class="card-number">
+              <span id="card_cnumber">0000 0000 0000 0000</span>
+            </div>
+            <div class="other-details">
+              <div class="name">
+                <span id="card_cname">Jane Appleseed</span>
+              </div>
+              <div class="exp-date">
+                <span id="card_exp-m">00</span>/<span id="card_exp-y">00</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-display__card card-display__card--back" id="card_cvc">
+          000
+        </div>
+      </div>
+      <div class="white-block"></div>
+
+    </div>
+    <div class="checkout" id="checkout">
+      <div class="checkout__form">
+        <form id="checkout-form" onsubmit="submitForm(event)">
+          <div class="form-row">
+            <label for="cname">Cardholder Name</label>
+            <input type="text" name="cname" id="cname" placeholder="e.g. Jane Appleseed">
+            <div id="cname-error-message" class="error-message"></div>
+          </div>
+          <div class="form-row">
+            <label for="cnumber">Card Number</label>
+            <input name="cnumber" id="cnumber" placeholder="e.g. 1234 5678 9123 0000" type="tel" maxlength="19">
+            <div id="cnumber-error-message" class="error-message"></div>
+          </div>
+          <div class="form-row details">
+            <div class="exp-wrap">
+              <label for="exp-m exp-y">Exp. Date (MM/YY)</label>
+              <div class="exp__inner">
+                <div class="input-wrapper">
+                  <input name="exp-m" id="exp-m" placeholder="MM" type="text" pattern="\d*" maxlength="2">
+                  <div id="exp-m-error-message" class="error-message"></div>
+                </div>
+                <div class="input-wrapper">
+                  <input name="exp-y" id="exp-y" placeholder="YY" type="text" pattern="\d*" maxlength="2">
+                  <div id="exp-y-error-message" class="error-message"></div>
+                </div>
+              </div>
+            </div>
+            <div class="cvc-wrap">
+              <label for="cvc">CVC</label>
+              <input type="text" name="cvc" id="cvc" placeholder="e.g. 123"  maxlength="3">
+              <div id="cvc-error-message" class="error-message"></div>
+            </div>
+          </div>
+          <div class="form-row">
+            <button type="submit">Confirm</button>
+          </div>
+        </form>
+      </div>
+
+    </div>
+
+    <div class="completed hidden" id="completed">
+      <div class="completed-logo-wrapper">
+        <object class="completed-logo" data="images/icon-complete.svg" width="100" height="auto"> </object>
+      </div>
+      <h1>Thank you!</h1>
+      <span style="margin-bottom: 40px;">
+        We've added your card details
+      </span>
+      <button onclick="resetForm()">Continue</button>
+    </div>
+
+  </div>
+
+
+
+  <!-- Completed state start -->
+
+
+  <script>
+    // Update the details on the card as the user fills in the fields
+
+    const form = document.getElementById('checkout-form');
+    const cardholderNameInput = document.getElementById('cname');
+    const cardNumberInput = document.getElementById('cnumber');
+    const expMonthInput = document.getElementById('exp-m');
+    const expYearInput = document.getElementById('exp-y');
+    const cvcInput = document.getElementById('cvc');
+
+
+    // console log the cardholder name when you type in the input
+    // When input changes update the card text on the card display using innerHTML
+    
+    cardholderNameInput.addEventListener('input', function (e){
+      e.preventDefault();
+      document.getElementById('card_cname').innerHTML = cardholderNameInput.value;
+    });
+
+    cardNumberInput.addEventListener('input', function (e){
+      e.preventDefault();
+      document.getElementById('card_cnumber').innerHTML = cardNumberInput.value;
+    });
+
+    expMonthInput.addEventListener('input', function (e){
+      e.preventDefault();
+      document.getElementById('card_exp-m').innerHTML = expMonthInput.value;
+    });
+
+    expYearInput.addEventListener('input', function (e){
+      e.preventDefault();
+      document.getElementById('card_exp-y').innerHTML = expYearInput.value;
+    });
+
+    cvcInput.addEventListener('input', function (e){
+      e.preventDefault();
+      document.getElementById('card_cvc').innerHTML = cvcInput.value;
+    });
+
+    cardNumberInput.addEventListener('keypress', function (e){
+      if (cardNumberInput.value.length < 19) {
+        cardNumberInput.value = cardNumberInput.value.replace(/\W/gi, '').replace(/(.{4})/g, '$1 ');
+      }
+    });
+
+  </script>
+</body>
+
+</html>
