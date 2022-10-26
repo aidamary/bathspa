@@ -1,9 +1,9 @@
 import React from 'react'
 
-const Text = () => {
+const TextComponent = ({text}) => {
   return (
-    <div>Text</div>
+    <div>{text}</div>
   )
 }
 
-export default Text
+export default TextComponent

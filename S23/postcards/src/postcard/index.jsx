@@ -1,13 +1,12 @@
 import React from 'react'
 import Image from '../image'
-import Text from '../text'
 import './index.css';
 
-const Postcard = ({text, url}) => {
+const Postcard = ({url, children}) => {
   return (
     <div className='postcard-wrapper'>
         <Image url={url} />
-        <Text>{text}</Text>
+        {children}
     </div>
   )
 }
