@@ -1,14 +1,22 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import TimerListItem from "../TimerListItem";
 
-const TimerForm = ({ addTimer }) => {
+const TimerForm = () => {
   const [label, setLabel] = useState("");
   const [time, setTime] = useState(0);
+  const [timers, setTimers] = useState([]);
   const handleSubmit = ($event) => {
     $event.preventDefault();
     addTimer(label, time);
     setTime(0);
     setLabel("");
   };
+
+
+  const addTimer = (label, time) => {
+    setTimers([...timers, {label, time}]);
+  }
   return (
     <>
       <h2>Add a timer:</h2>
@@ -41,6 +49,12 @@ const TimerForm = ({ addTimer }) => {
           Submit
         </button>
       </form>
+      {
+        timers.map((timer, index) => <TimerListItem label={timer.label} time={timer.time} key={index}/>)
+      }
+      {
+        !!timers.length && <Link to='start' state={timers}><button>START</button></Link>
+      }
     </>
   );
 };
