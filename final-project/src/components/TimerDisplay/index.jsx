@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const TimerDisplay = () => {
   const [index, setIndex] = useState(0);
   const [label, setLabel] = useState('');
   const {state} = useLocation();
+  const navigate = useNavigate();
   const [time, setTime] = useState(-1);
   let length = state.length - 1;
   console.log(state);
@@ -17,14 +18,13 @@ const TimerDisplay = () => {
   }
 
   useEffect(() => {
-    //console.log(state[index], index);
     setLabel(state[index].label)
     setTime(parseInt(state[index].time))
-  }, [index])
+  }, [index, state])
 
   useEffect(() => {
     while (time > 0) {
-      const interval = setInterval(() =>  setTime(prevTime => prevTime - 1), 1000);
+      const interval = setInterval(() =>  setTime(prevTime => prevTime - 1), 100);
       return () => clearInterval(interval);
     }
     if (time === 0) {
@@ -33,9 +33,10 @@ const TimerDisplay = () => {
         setIndex(prevIndex => prevIndex + 1)
       } else {
         console.log('return to creation');
+        navigate('/');
       }
     }
-  }, [time]);
+  }, [time, index, length, navigate]);
   return (
     <div>
       <h1>{label}</h1>
