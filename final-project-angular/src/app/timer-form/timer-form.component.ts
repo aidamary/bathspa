@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TimersService } from '../services/timers.service';
 import { timer } from '../types/timer.types';
+import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-timer-form',
@@ -40,7 +41,12 @@ export class TimerFormComponent implements OnInit {
     this.router.navigate(['/start'])
   }
 
-  drop(event: any) {
+  drop(event: CdkDragDrop<timer[]>) {
+    moveItemInArray(this.timers, event.previousIndex, event.currentIndex);
+  }
 
+  deleteTimer(timer: timer) {
+    this.timerService.deleteTimer(timer);
+    this.timers = this.timerService.getTimers();
   }
 }

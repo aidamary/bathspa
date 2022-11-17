@@ -10,6 +10,16 @@
   <button mat-fab type="submit" color="primary" [disabled]="!label || !time"><mat-icon>add</mat-icon></button>
 </form>
 <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
-  <div class="example-box" *ngFor="let timer of timers" cdkDrag>{{timer.label}}: {{timer.time}}</div>
+  <div class="example-box" *ngFor="let timer of timers" cdkDrag>
+    <mat-form-field>
+      <mat-label for="label">Label</mat-label>
+      <input matInput [(ngModel)]="timer.label" name="label" disabled>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label for="time">Time</mat-label>
+      <input matInput [(ngModel)]="timer.time" type="number" name="time" disabled>
+    </mat-form-field>
+    <button mat-fab type="submit" color="warn" (click)="deleteTimer(timer)"><mat-icon>delete</mat-icon></button>
+  </div>
 </div>
 <button mat-raised-button color="accent" [disabled]="timers.length === 0" (click)="startTimer()">START</button>

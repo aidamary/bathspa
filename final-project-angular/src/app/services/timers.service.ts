@@ -5,6 +5,7 @@ import { timer } from '../types/timer.types';
   providedIn: 'root'
 })
 export class TimersService {
+  constructor() { }
   private _timers: timer[] = [{label: 'test', time: 110}];
 
   public getTimers() {
@@ -15,5 +16,7 @@ export class TimersService {
     this._timers.push(timer)
   }
 
-  constructor() { }
+  deleteTimer(timer: timer) {
+    this._timers = this._timers.filter(_ => !(_.label === timer.label && _.time === timer.time));
+  }
 }

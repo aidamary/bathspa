@@ -12,6 +12,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatListModule } from '@angular/material/list';
+import { DragDropModule  } from '@angular/cdk/drag-drop';
 import { FormsModule } from '@angular/forms';
 import { TimerDisplayComponent } from './timer-display/timer-display.component';
 
@@ -32,7 +33,8 @@ import { TimerDisplayComponent } from './timer-display/timer-display.component';
     FormsModule,
     MatIconModule,
     MatProgressSpinnerModule,
-    MatListModule
+    MatListModule,
+    DragDropModule
   ],
   providers: [],
   bootstrap: [AppComponent]
