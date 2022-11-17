@@ -9,10 +9,7 @@
   </mat-form-field>
   <button mat-fab type="submit" color="primary" [disabled]="!label || !time"><mat-icon>add</mat-icon></button>
 </form>
-
-<div class="timers-list list-group">
-  <div class="timer list-group-item" *ngFor="let timer of timers">
-    {{timer.label}}: {{timer.time}}
-  </div>
+<div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
+  <div class="example-box" *ngFor="let timer of timers" cdkDrag>{{timer.label}}: {{timer.time}}</div>
 </div>
 <button mat-raised-button color="accent" [disabled]="timers.length === 0" (click)="startTimer()">START</button>

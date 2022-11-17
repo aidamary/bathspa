@@ -39,4 +39,8 @@ export class TimerFormComponent implements OnInit {
   startTimer() {
     this.router.navigate(['/start'])
   }
+
+  drop(event: any) {
+
+  }
 }

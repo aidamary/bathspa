@@ -40,7 +40,7 @@ export class TimerDisplayComponent implements OnInit {
         if (this.index < this.timers.length) {
           this.startTimer()
         } else {
-          this.router.navigate(['/']);
+          this.cancel();
         }
       }
     },1000)
@@ -59,6 +59,10 @@ export class TimerDisplayComponent implements OnInit {
       result = pad(hours) + ':' + result
     }
     return result;
+  }
+
+  cancel() {
+    this.router.navigate(['/']);
   }
 
 }

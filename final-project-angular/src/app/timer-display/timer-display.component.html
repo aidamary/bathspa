@@ -1,12 +1,20 @@
-<div class="wrapper">
-  <mat-progress-spinner
-  color="primary"
-          mode="determinate"
-          [value]="(currentTime / TIME_LIMIT) * 100"
-          [diameter]="370"
-          [strokeWidth]="6">
-  </mat-progress-spinner>
-  <div class="display-time">
-    {{displayTime}}
+<div class="timer-display">
+  <div class="wrapper">
+    <mat-progress-spinner
+    color="primary"
+            mode="determinate"
+            [value]="(currentTime / TIME_LIMIT) * 100"
+            [diameter]="270"
+            [strokeWidth]="6">
+    </mat-progress-spinner>
+    <div class="display-time">
+      <span>
+        {{currentLabel}}
+      </span>
+      <span>
+        {{displayTime}}
+      </span>
+    </div>
   </div>
+  <button (click)="cancel()" mat-raised-button color="warn" >CANCEL</button>
 </div>
