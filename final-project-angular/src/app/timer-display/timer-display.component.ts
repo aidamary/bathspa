@@ -17,7 +17,6 @@ export class TimerDisplayComponent implements OnInit {
   interval: any;
   index: number = 0;
   TIME_LIMIT!: number;
-  FULL_DASH_ARRAY: number = 283;
   constructor(
     private timerService: TimersService,
     private router: Router
@@ -35,7 +34,6 @@ export class TimerDisplayComponent implements OnInit {
     this.interval = setInterval(() => {
       this.currentTime--;
       this.displayTime = this.calculateDisplayTime(this.currentTime)
-      this.setCircleDasharray();
       if (this.currentTime < 0) {
         this.index++;
         clearInterval(this.interval);
@@ -61,17 +59,6 @@ export class TimerDisplayComponent implements OnInit {
       result = pad(hours) + ':' + result
     }
     return result;
-  }
-
-  calculateTimeFraction() {
-    return this.currentTime / this.TIME_LIMIT;
-  }
-
-  setCircleDasharray() {
-    const circleDasharray = `${(
-      this.calculateTimeFraction() * this.FULL_DASH_ARRAY
-    ).toFixed(0)} 283`;
-    this.pathRemaining?.nativeElement.setAttribute("stroke-dasharray", circleDasharray);
   }
 
 }
