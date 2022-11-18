@@ -17,11 +17,13 @@ export class TimerDisplayComponent implements OnInit {
   interval: any;
   index: number = 0;
   TIME_LIMIT!: number;
+  notification: any;
   constructor(
     private timerService: TimersService,
     private router: Router
   ) {}
   ngOnInit(): void {
+    this.notification = new Audio('assets/bell.mp3')
     this.timers = this.timerService.getTimers();
     this.startTimer();
   }
@@ -35,11 +37,14 @@ export class TimerDisplayComponent implements OnInit {
       this.currentTime--;
       this.displayTime = this.calculateDisplayTime(this.currentTime)
       if (this.currentTime < 0) {
+        this,this.notification.play();
+        navigator.vibrate(300);
         this.index++;
         clearInterval(this.interval);
         if (this.index < this.timers.length) {
           this.startTimer()
         } else {
+          navigator.vibrate([150, 150]);
           this.cancel();
         }
       }
