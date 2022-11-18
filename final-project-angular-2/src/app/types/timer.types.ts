@@ -3,3 +3,9 @@ export interface Timer {
   time: string;
   label: string;
 }
+
+export interface Routine {
+  id?: string;
+  name: string;
+  timers: Timer[];
+}

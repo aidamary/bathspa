@@ -21,6 +21,8 @@ import { TimerDisplayComponent } from './timer-display/timer-display.component';
 import { environment } from 'src/environments/environment';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { RoutinesListComponent } from './routines-list/routines-list.component';
+import { RoutineDetailComponent } from './routine-detail/routine-detail.component';
 
 
 
@@ -29,7 +31,9 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
     AppComponent,
     TimerFormComponent,
     PageNotFoundComponent,
-    TimerDisplayComponent
+    TimerDisplayComponent,
+    RoutinesListComponent,
+    RoutineDetailComponent
   ],
   imports: [
     BrowserModule,

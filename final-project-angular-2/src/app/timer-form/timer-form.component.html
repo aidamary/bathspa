@@ -9,6 +9,7 @@
   </mat-form-field>
   <button mat-fab type="submit" color="primary" [disabled]="!label || time === '00:00'"><mat-icon>add</mat-icon></button>
 </form>
+<h3>Drag & drop your timers to re-order them</h3>
 <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)" *ngIf="timers.length">
   <div class="example-box" *ngFor="let timer of timers" cdkDrag>
     <mat-form-field>
@@ -20,15 +21,20 @@
       <input matInput [(ngModel)]="timer.time" type="time" name="time" [disabled]="editingTimer !== timer.id">
     </mat-form-field>
 
-    <button mat-fab color="primary" (click)="saveChanges(timer)"
-    aria-label="Save Changes" *ngIf="editingTimer === timer.id; else editButton"><mat-icon>save</mat-icon></button>
+    <div class="button-container">
+      <button mat-fab color="primary" (click)="saveChanges(timer)"
+      aria-label="Save Changes" *ngIf="editingTimer === timer.id; else editButton"><mat-icon>save</mat-icon></button>
 
-    <ng-template #editButton>
-      <button mat-fab color="secondary" (click)="editTimer(timer)"
-      aria-label="Edit"><mat-icon>edit</mat-icon></button>
-    </ng-template>
-    <button mat-fab color="warn" (click)="deleteTimer(timer)"
-    aria-label="Delete"><mat-icon>delete</mat-icon></button>
+      <ng-template #editButton>
+        <button mat-fab color="secondary" (click)="editTimer(timer)"
+        aria-label="Edit"><mat-icon>edit</mat-icon></button>
+      </ng-template>
+      <button mat-fab color="warn" (click)="deleteTimer(timer)"
+      aria-label="Delete"><mat-icon>delete</mat-icon></button>
+    </div>
   </div>
 </div>
-<button mat-raised-button color="accent" [disabled]="timers.length === 0" (click)="startTimer()">START</button>
+<div class="global-action-button-wrapper">
+  <button mat-raised-button color="accent" [disabled]="timers.length === 0" (click)="startTimer()">START</button>
+  <button mat-raised-button color="primary" [disabled]="timers.length === 0" (click)="saveRoutine()">SAVE ROUTINE</button>
+</div>
