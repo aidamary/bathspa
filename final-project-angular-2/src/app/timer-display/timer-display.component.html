@@ -1,0 +1,24 @@
+<div class="timer-display">
+  <div class="wrapper">
+    <mat-progress-spinner
+    color="primary"
+            mode="determinate"
+            [value]="(currentTime / TIME_LIMIT) * 100"
+            [diameter]="270"
+            [strokeWidth]="6">
+    </mat-progress-spinner>
+    <div class="display-time">
+      <span>
+        {{currentLabel}}
+      </span>
+      <span>
+        {{displayTime}}
+      </span>
+    </div>
+  </div>
+  <button (click)="resumeTimer()" mat-raised-button color="primary" *ngIf="pause; else pauseButton" >RESUME</button>
+  <ng-template #pauseButton>
+    <button (click)="pauseTimer()" mat-raised-button color="secondary">PAUSE</button>
+  </ng-template>
+  <button (click)="cancel()" mat-raised-button color="warn" >CANCEL</button>
+</div>

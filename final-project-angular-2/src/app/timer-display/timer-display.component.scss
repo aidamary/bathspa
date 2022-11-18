@@ -1,0 +1,32 @@
+.timer-display {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  button {
+    max-width: 200px;
+    align-self: center;
+    margin-top: 40px;
+  }
+}
+
+.wrapper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.display-time {
+  position: absolute;
+  text-align: center;
+  margin: auto;
+  font-size: 3em;
+  display: flex;
+  flex-direction: column;
+  line-height: 1em;
+}
+
+::ng-deep .mat-progress-spinner circle {
+  stroke-linecap: round;
+}

@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "aidatimer-106cf": {
+      "hosting": {
+        "final-project-angular": [
+          "aidatimer-106cf"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "aidatimer-106cf"
+  }
+}
