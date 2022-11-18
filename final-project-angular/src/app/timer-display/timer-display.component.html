@@ -16,5 +16,9 @@
       </span>
     </div>
   </div>
+  <button (click)="resumeTimer()" mat-raised-button color="primary" *ngIf="pause; else pauseButton" >RESUME</button>
+  <ng-template #pauseButton>
+    <button (click)="pauseTimer()" mat-raised-button color="secondary">PAUSE</button>
+  </ng-template>
   <button (click)="cancel()" mat-raised-button color="warn" >CANCEL</button>
 </div>

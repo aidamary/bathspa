@@ -17,6 +17,7 @@ export class TimerDisplayComponent implements OnInit {
   interval: any;
   index: number = 0;
   TIME_LIMIT!: number;
+  pause: boolean = false;
   notification: any;
   constructor(
     private timerService: TimersService,
@@ -40,22 +41,7 @@ export class TimerDisplayComponent implements OnInit {
     this.currentTime = this.transformTime(this.timers[this.index].time);
     this.TIME_LIMIT = this.transformTime(this.timers[this.index].time);
     this.displayTime = this.calculateDisplayTime(this.currentTime)
-    this.interval = setInterval(() => {
-      this.currentTime--;
-      this.displayTime = this.calculateDisplayTime(this.currentTime)
-      if (this.currentTime < 0) {
-        this,this.notification.play();
-        navigator.vibrate(300);
-        this.index++;
-        clearInterval(this.interval);
-        if (this.index < this.timers.length) {
-          this.startTimer()
-        } else {
-          navigator.vibrate([150, 150]);
-          this.cancel();
-        }
-      }
-    },1000)
+    this.launchTimer();
   }
 
   calculateDisplayTime(time: number): string {
@@ -75,6 +61,35 @@ export class TimerDisplayComponent implements OnInit {
 
   cancel() {
     this.router.navigate(['/']);
+  }
+
+  pauseTimer() {
+    this.pause = true;
+    clearInterval(this.interval);
+  }
+
+  resumeTimer() {
+    this.pause = false;
+    this.launchTimer();
+  }
+
+  launchTimer() {
+    this.interval = setInterval(() => {
+      this.currentTime--;
+      this.displayTime = this.calculateDisplayTime(this.currentTime)
+      if (this.currentTime < 0) {
+        this,this.notification.play();
+        navigator.vibrate(300);
+        this.index++;
+        clearInterval(this.interval);
+        if (this.index < this.timers.length) {
+          this.startTimer()
+        } else {
+          navigator.vibrate([150, 150]);
+          this.cancel();
+        }
+      }
+    },1000)
   }
 
 }
