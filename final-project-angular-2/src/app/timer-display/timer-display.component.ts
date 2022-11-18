@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { TimersService } from '../services/timers.service';
-import { timer } from '../types/timer.types';
+import { Timer } from '../types/timer.types';
 
 @Component({
   selector: 'app-timer-display',
@@ -10,7 +10,7 @@ import { timer } from '../types/timer.types';
 })
 export class TimerDisplayComponent implements OnInit {
   @ViewChild('pathRemaining') pathRemaining: ElementRef | undefined;
-  timers: timer[] = [];
+  timers: Timer[] = [];
   currentLabel: string = '';
   currentTime: number = 0;
   displayTime: string = '';
@@ -25,8 +25,10 @@ export class TimerDisplayComponent implements OnInit {
   ) {}
   ngOnInit(): void {
     this.notification = new Audio('assets/bell.mp3')
-    this.timers = this.timerService.getTimers();
-    this.startTimer();
+    this.timerService.getTimers().subscribe(timers => {
+      this.timers = timers;
+      this.startTimer();
+    });
   }
 
   transformTime(time: string) {
@@ -60,6 +62,7 @@ export class TimerDisplayComponent implements OnInit {
   }
 
   cancel() {
+    clearInterval(this.interval);
     this.router.navigate(['/']);
   }
 

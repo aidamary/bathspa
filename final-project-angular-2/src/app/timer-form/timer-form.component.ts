@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TimersService } from '../services/timers.service';
-import { timer } from '../types/timer.types';
+import { Timer } from '../types/timer.types';
 import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 
 @Component({
@@ -12,7 +12,8 @@ import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 export class TimerFormComponent implements OnInit {
   label: string = '';
   time: string = '00:00';
-  timers: timer[] = [];
+  timers: Timer[] = [];
+  editingTimer?: string = '';
 
   constructor(
     private router: Router,
@@ -21,7 +22,7 @@ export class TimerFormComponent implements OnInit {
 
   }
   ngOnInit(): void {
-    this.timers = this.timerService.getTimers();
+    this.timerService.getTimers().subscribe(timers => this.timers = timers);
   }
 
   addTimer(event: any) {
@@ -29,7 +30,7 @@ export class TimerFormComponent implements OnInit {
     event.preventDefault();
     this.timerService.addTimer({label: this.label, time: this.time});
     this.resetFields();
-    this.timers = this.timerService.getTimers();
+    this.timerService.getTimers().subscribe(timers => this.timers = timers);
   }
 
   resetFields() {
@@ -41,14 +42,22 @@ export class TimerFormComponent implements OnInit {
     this.router.navigate(['/start'])
   }
 
-  drop(event: CdkDragDrop<timer[]>) {
+  drop(event: CdkDragDrop<Timer[]>) {
     moveItemInArray(this.timers, event.previousIndex, event.currentIndex);
   }
 
-  deleteTimer(timer: timer) {
+  deleteTimer(timer: Timer) {
     if (confirm(`Are you sure you want to delete this timer?`)) {
       this.timerService.deleteTimer(timer);
-      this.timers = this.timerService.getTimers();
+      this.timerService.getTimers().subscribe(timers => this.timers = timers);
     }
+  }
+  editTimer(timer: Timer) {
+    this.editingTimer = timer.id;
+  }
+
+  saveChanges(timer: Timer) {
+    this.timerService.editTimer(timer);
+    this.editingTimer = '';
   }
 }

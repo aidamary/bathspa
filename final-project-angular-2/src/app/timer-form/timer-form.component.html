@@ -13,13 +13,21 @@
   <div class="example-box" *ngFor="let timer of timers" cdkDrag>
     <mat-form-field>
       <mat-label for="label">Label</mat-label>
-      <input matInput [(ngModel)]="timer.label" name="label" disabled>
+      <input matInput [(ngModel)]="timer.label" name="label" [disabled]="editingTimer !== timer.id">
     </mat-form-field>
     <mat-form-field>
       <mat-label for="time">Time</mat-label>
-      <input matInput [(ngModel)]="timer.time" type="time" name="time" disabled>
+      <input matInput [(ngModel)]="timer.time" type="time" name="time" [disabled]="editingTimer !== timer.id">
     </mat-form-field>
-    <button mat-fab type="submit" color="warn" (click)="deleteTimer(timer)"
+
+    <button mat-fab color="primary" (click)="saveChanges(timer)"
+    aria-label="Save Changes" *ngIf="editingTimer === timer.id; else editButton"><mat-icon>save</mat-icon></button>
+
+    <ng-template #editButton>
+      <button mat-fab color="secondary" (click)="editTimer(timer)"
+      aria-label="Edit"><mat-icon>edit</mat-icon></button>
+    </ng-template>
+    <button mat-fab color="warn" (click)="deleteTimer(timer)"
     aria-label="Delete"><mat-icon>delete</mat-icon></button>
   </div>
 </div>

@@ -1,4 +1,5 @@
-export interface timer {
-  time: string,
-  label: string
+export interface Timer {
+  id?: string;
+  time: string;
+  label: string;
 }
