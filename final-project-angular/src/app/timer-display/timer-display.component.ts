@@ -28,10 +28,17 @@ export class TimerDisplayComponent implements OnInit {
     this.startTimer();
   }
 
+  transformTime(time: string) {
+    const parts = time.split(':');
+    const minutes = parseInt(parts[0]);
+    const seconds = parseInt(parts[1]);
+    return (minutes * 60) + seconds;
+  }
+
   startTimer() {
     this.currentLabel = this.timers[this.index].label;
-    this.currentTime = this.timers[this.index].time;
-    this.TIME_LIMIT = this.timers[this.index].time;
+    this.currentTime = this.transformTime(this.timers[this.index].time);
+    this.TIME_LIMIT = this.transformTime(this.timers[this.index].time);
     this.displayTime = this.calculateDisplayTime(this.currentTime)
     this.interval = setInterval(() => {
       this.currentTime--;

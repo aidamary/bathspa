@@ -1,4 +1,4 @@
 export interface timer {
-  time: number,
+  time: string,
   label: string
 }

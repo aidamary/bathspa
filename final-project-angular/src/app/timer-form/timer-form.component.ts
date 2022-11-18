@@ -11,7 +11,7 @@ import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 })
 export class TimerFormComponent implements OnInit {
   label: string = '';
-  time: number = 0;
+  time: string = '00:00';
   timers: timer[] = [];
 
   constructor(
@@ -25,7 +25,7 @@ export class TimerFormComponent implements OnInit {
   }
 
   addTimer(event: any) {
-    console.log(event);
+    console.log(typeof this.time);
     event.preventDefault();
     this.timerService.addTimer({label: this.label, time: this.time});
     this.resetFields();
@@ -33,7 +33,7 @@ export class TimerFormComponent implements OnInit {
   }
 
   resetFields() {
-    this.time = 0;
+    this.time = '00:00';
     this.label = '';
   }
 

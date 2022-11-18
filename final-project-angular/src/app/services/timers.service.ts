@@ -6,7 +6,7 @@ import { timer } from '../types/timer.types';
 })
 export class TimersService {
   constructor() { }
-  private _timers: timer[] = [{label: 'test', time: 110}];
+  private _timers: timer[] = [{label: 'test', time: '00:10'}];
 
   public getTimers() {
     return this._timers;
