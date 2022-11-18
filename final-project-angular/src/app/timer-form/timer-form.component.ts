@@ -46,7 +46,9 @@ export class TimerFormComponent implements OnInit {
   }
 
   deleteTimer(timer: timer) {
-    this.timerService.deleteTimer(timer);
-    this.timers = this.timerService.getTimers();
+    if (confirm(`Are you sure you want to delete this timer?`)) {
+      this.timerService.deleteTimer(timer);
+      this.timers = this.timerService.getTimers();
+    }
   }
 }
