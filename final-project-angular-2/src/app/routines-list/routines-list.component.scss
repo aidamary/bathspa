@@ -1,0 +1,15 @@
+::ng-deep .mat-list-item {
+  height: auto !important;
+  padding: 20px !important;
+}
+::ng-deep .mat-list-item-content {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  height: auto;
+
+  button {
+    margin-right: 20px;
+  }
+}

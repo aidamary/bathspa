@@ -1,0 +1,13 @@
+form {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+
+  mat-form-field {
+    margin-right: 20px;
+  }
+
+  button {
+    margin-left: 64px;
+  }
+}

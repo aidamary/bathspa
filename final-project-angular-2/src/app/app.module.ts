@@ -23,6 +23,11 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { RoutinesListComponent } from './routines-list/routines-list.component';
 import { RoutineDetailComponent } from './routine-detail/routine-detail.component';
+import { DurationInputComponent } from './duration-input/duration-input.component';
+import { AddRoutineDialogComponent } from './add-routine-dialog/add-routine-dialog.component';
+import { PlayAllTimersComponent } from './play-all-timers/play-all-timers.component';
+import { EditRoutineComponent } from './edit-routine/edit-routine.component';
+import { AddTimerFormComponent } from './add-timer-form/add-timer-form.component';
 
 
 
@@ -33,7 +38,12 @@ import { RoutineDetailComponent } from './routine-detail/routine-detail.componen
     PageNotFoundComponent,
     TimerDisplayComponent,
     RoutinesListComponent,
-    RoutineDetailComponent
+    RoutineDetailComponent,
+    DurationInputComponent,
+    AddRoutineDialogComponent,
+    PlayAllTimersComponent,
+    EditRoutineComponent,
+    AddTimerFormComponent
   ],
   imports: [
     BrowserModule,

@@ -1,1 +1,18 @@
-<p>routines-list works!</p>
+<mat-list role="list" *ngIf="routines.length; else noRoutines">
+  <mat-list-item role="listitem" *ngFor="let routine of routines">
+    <span>{{routine.title}}: {{routine.timers.length}} timer(s)</span>
+    <div class="button-wrapper">
+      <button mat-fab color="primary" (click)="startRoutine(routine)"
+      aria-label="Edit"><mat-icon>play_arrow</mat-icon></button>
+      <button mat-fab color="secondary" (click)="editRoutine(routine)"
+      aria-label="Edit"><mat-icon>edit</mat-icon></button>
+      <button mat-fab color="warn" (click)="deleteRoutine(routine)"
+      aria-label="Delete"><mat-icon>delete</mat-icon></button>
+    </div>
+  </mat-list-item>
+</mat-list>
+<button mat-raised-button color="primary" routerLink="create">ADD NEW ROUTINE</button>
+
+<ng-template #noRoutines>
+  <h1>You don't have any routines yet!</h1>
+</ng-template>

@@ -1,12 +1,19 @@
+<div class="container" *ngIf="routine; else loading">
+<mat-form-field>
+  <mat-label for="label">Routine Title</mat-label>
+  <input matInput [(ngModel)]="routine.title" name="label">
+</mat-form-field>
+<h2>Add timers to your routine</h2>
 <app-add-timer-form (addTimerEvent)="addTimer($event)"></app-add-timer-form>
 <h3>Drag & drop your timers to re-order them</h3>
-<div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)" *ngIf="timers.length">
-  <div class="example-box" *ngFor="let timer of timers" cdkDrag>
+<div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)" *ngIf="routine.timers.length">
+  <div class="example-box" *ngFor="let timer of routine.timers" cdkDrag>
     <mat-form-field>
       <mat-label for="label">Label</mat-label>
       <input matInput [(ngModel)]="timer.label" name="label" [disabled]="editingTimer !== timer.id">
     </mat-form-field>
     <app-duration-input [(durationString)]="timer.time" [disabled]="editingTimer !== timer.id"></app-duration-input>
+
     <div class="button-container">
       <button mat-fab color="primary" (click)="saveChanges(timer)"
       aria-label="Save Changes" *ngIf="editingTimer === timer.id; else editButton"><mat-icon>save</mat-icon></button>
@@ -21,7 +28,10 @@
   </div>
 </div>
 <div class="global-action-button-wrapper">
-  <button mat-raised-button color="accent" [disabled]="timers.length === 0" (click)="startTimer()">START</button>
-  <button mat-raised-button color="primary" [disabled]="timers.length === 0" (click)="saveRoutine()">SAVE ROUTINE</button>
-  <button mat-raised-button color="secondary" routerLink="/routines">SEE MY ROUTINES</button>
+  <button mat-raised-button color="primary" [disabled]="routine.timers.length === 0 || !routine.title" (click)="saveRoutine()">SAVE ROUTINE</button>
+  <button mat-raised-button color="warn" routerLink="/routines">CANCEL</button>
 </div>
+</div>
+<ng-template #loading>
+  <mat-progress-spinner></mat-progress-spinner>
+</ng-template>

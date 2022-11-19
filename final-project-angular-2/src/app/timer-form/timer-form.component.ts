@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { TimersService } from '../services/timers.service';
 import { Timer } from '../types/timer.types';
 import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
+import { MatDialog } from '@angular/material/dialog';
+import { AddRoutineDialogComponent } from '../add-routine-dialog/add-routine-dialog.component';
 
 @Component({
   selector: 'app-timer-form',
@@ -11,13 +13,14 @@ import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 })
 export class TimerFormComponent implements OnInit {
   label: string = '';
-  time: string = '00:00';
+  time: string = '';
   timers: Timer[] = [];
   editingTimer?: string = '';
 
   constructor(
     private router: Router,
-    private timerService: TimersService
+    private timerService: TimersService,
+    private dialog: MatDialog
   ) {
 
   }
@@ -26,15 +29,13 @@ export class TimerFormComponent implements OnInit {
   }
 
   addTimer(event: any) {
-    console.log(typeof this.time);
-    event.preventDefault();
     this.timerService.addTimer({label: this.label, time: this.time});
     this.resetFields();
     this.timerService.getTimers().subscribe(timers => this.timers = timers);
   }
 
   resetFields() {
-    this.time = '00:00';
+    this.time = '';
     this.label = '';
   }
 
@@ -62,6 +63,22 @@ export class TimerFormComponent implements OnInit {
   }
 
   saveRoutine() {
+    const dialogRef = this.dialog.open(AddRoutineDialogComponent, {
+      width: '270px',
+      data: {
+        routine: {
+          timers: this.timers
+        }
+      }
+    });
 
+    dialogRef
+      .afterClosed()
+      .subscribe((result: any|undefined) => {
+        if (!result) {
+          return;
+        }
+        this.timerService.saveRoutine(result.routine);
+      });
   }
 }

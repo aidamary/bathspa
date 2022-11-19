@@ -1,1 +1,7 @@
-<p>routine-detail works!</p>
+<div class="routine-wrapper" *ngIf="routine; else loading">
+  <h1>{{routine.title}}</h1>
+  <app-timer-display [timers]="routine.timers"></app-timer-display>
+</div>
+<ng-template #loading>
+  <mat-progress-spinner></mat-progress-spinner>
+</ng-template>

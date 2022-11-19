@@ -1,0 +1,8 @@
+<form (submit)="addTimer($event)">
+  <mat-form-field>
+    <mat-label for="label">Label</mat-label>
+    <input matInput [(ngModel)]="label" name="label" required>
+  </mat-form-field>
+  <app-duration-input [(durationString)]="time" label="Time"></app-duration-input>
+  <button mat-fab type="submit" color="primary" [disabled]="!label || time === '00:00:00'"><mat-icon>add</mat-icon></button>
+</form>

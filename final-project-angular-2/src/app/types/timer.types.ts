@@ -6,6 +6,6 @@ export interface Timer {
 
 export interface Routine {
   id?: string;
-  name: string;
+  title: string;
   timers: Timer[];
 }

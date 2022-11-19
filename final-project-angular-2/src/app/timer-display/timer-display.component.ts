@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { TimersService } from '../services/timers.service';
 import { Timer } from '../types/timer.types';
@@ -8,9 +8,9 @@ import { Timer } from '../types/timer.types';
   templateUrl: './timer-display.component.html',
   styleUrls: ['./timer-display.component.scss']
 })
-export class TimerDisplayComponent implements OnInit {
+export class TimerDisplayComponent implements OnInit, OnChanges {
   @ViewChild('pathRemaining') pathRemaining: ElementRef | undefined;
-  timers: Timer[] = [];
+  @Input() timers: Timer[] = [];
   currentLabel: string = '';
   currentTime: number = 0;
   displayTime: string = '';
@@ -20,22 +20,25 @@ export class TimerDisplayComponent implements OnInit {
   pause: boolean = false;
   notification: any;
   constructor(
-    private timerService: TimersService,
     private router: Router
   ) {}
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['timers']) {
+      if (this.timers.length) {
+        this.startTimer();
+      }
+    }
+  }
   ngOnInit(): void {
     this.notification = new Audio('assets/bell.mp3')
-    this.timerService.getTimers().subscribe(timers => {
-      this.timers = timers;
-      this.startTimer();
-    });
   }
 
   transformTime(time: string) {
     const parts = time.split(':');
-    const minutes = parseInt(parts[0]);
-    const seconds = parseInt(parts[1]);
-    return (minutes * 60) + seconds;
+    const hours = parseInt(parts[0]);
+    const minutes = parseInt(parts[1]);
+    const seconds = parseInt(parts[2]);
+    return (hours * 3600) + (minutes * 60) + seconds;
   }
 
   startTimer() {
