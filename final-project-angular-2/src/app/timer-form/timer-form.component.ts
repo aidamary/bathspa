@@ -12,8 +12,6 @@ import { AddRoutineDialogComponent } from '../add-routine-dialog/add-routine-dia
   styleUrls: ['./timer-form.component.scss']
 })
 export class TimerFormComponent implements OnInit {
-  label: string = '';
-  time: string = '';
   timers: Timer[] = [];
   editingTimer?: string = '';
 
@@ -29,14 +27,10 @@ export class TimerFormComponent implements OnInit {
   }
 
   addTimer(event: any) {
-    this.timerService.addTimer({label: this.label, time: this.time});
-    this.resetFields();
-    this.timerService.getTimers().subscribe(timers => this.timers = timers);
-  }
+    console.log(event);
 
-  resetFields() {
-    this.time = '';
-    this.label = '';
+    this.timerService.addTimer(event);
+    this.timerService.getTimers().subscribe(timers => this.timers = timers);
   }
 
   startTimer() {

@@ -1,19 +1,19 @@
 <ng-container>
   <mat-form-field>
     <mat-label for="hours">Hours</mat-label>
-    <input matInput class="duration-input" name="hours" [(ngModel)]="hours" placeholder="0" type="text"
-      (ngModelChange)="check('hours')" [disabled]="disabled" required>
+    <input matInput class="duration-input" name="hours" [(ngModel)]="hours" placeholder="00" type="text"
+      (ngModelChange)="check($event, 'hours')" [disabled]="disabled" required>
   </mat-form-field>
 
   <mat-form-field>
     <mat-label for="minutes">Minutes</mat-label>
-    <input matInput class="duration-input" name="minutes" [(ngModel)]="minutes" placeholder="0" type="text"
-      (ngModelChange)="check('minutes')" [disabled]="disabled" required>
+    <input matInput class="duration-input" name="minutes" [(ngModel)]="minutes" placeholder="00" type="text"
+      (ngModelChange)="check($event, 'minutes')" [disabled]="disabled" required>
   </mat-form-field>
 
   <mat-form-field>
     <mat-label for="seconds">Seconds</mat-label>
-    <input matInput class="duration-input" name="seconds" [(ngModel)]="seconds" placeholder="0" type="text"
-      (ngModelChange)="check('seconds')" [disabled]="disabled" required>
+    <input matInput class="duration-input" name="seconds" [(ngModel)]="seconds" placeholder="00" type="text"
+      (ngModelChange)="check($event, 'seconds')" [disabled]="disabled" required>
   </mat-form-field>
 </ng-container>

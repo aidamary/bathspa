@@ -38,26 +38,31 @@ export class DurationInputComponent implements OnInit, OnChanges {
     }
   }
 
-  check(type: string) {
-    if (type === 'hours') {
-      this.hours = this.getValidValue(this.hours as string, 23);
-    } else if (type === 'minutes') {
-      this.minutes = this.getValidValue(this.minutes as string, 59);
-    } else if (type === 'seconds') {
-      this.seconds = this.getValidValue(this.seconds as string, 59);
-    }
+  check(value: string, type: string) {
+    console.log(value);
 
-    this.durationString = `${this.hours}:${this.minutes}:${this.seconds}`;
-    this.durationStringChange.emit(this.durationString);
+    setTimeout(() => {
+      if (type === 'hours') {
+        this.hours = this.getValidValue(value, 23);
+      } else if (type === 'minutes') {
+        this.minutes = this.getValidValue(value, 59);
+      } else if (type === 'seconds') {
+        this.seconds = this.getValidValue(value, 59);
+      }
+      this.durationString = `${this.hours}:${this.minutes}:${this.seconds}`;
+      this.durationStringChange.emit(this.durationString);
+    }, 100)
+
   }
 
   getValidValue(value: string, max: number): String {
+    const pad = (n: number): string => n < 10 ? `0${n}` : n.toString();
     let n;
     if (/^\d+$/.test(value)) {
       n = parseInt(value);
       n = Math.max(0, n);
       n = Math.min(max, n);
-      return new String(n);
+      return pad(n);
     } else {
       return new String('00');
     }

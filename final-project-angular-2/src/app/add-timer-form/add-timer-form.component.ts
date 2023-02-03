@@ -19,6 +19,12 @@ export class AddTimerFormComponent implements OnInit {
   addTimer(event: any) {
     event.preventDefault();
     this.addTimerEvent.next({label: this.label, time: this.time});
+    this.resetFields();
+  }
+
+  resetFields() {
+    this.time = '';
+    this.label = '';
   }
 
 }
